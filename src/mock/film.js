@@ -90,7 +90,7 @@ const getRandomIdsArray = () => {
 
   const lengthOfArray = getRandomInteger(1, comments.length);
   while (ids.length < lengthOfArray) {
-    const currentElement = getRandomInteger(0, comments.length);
+    const currentElement = getRandomInteger(0, comments.length - 1);
     if (!ids.includes(currentElement)) {
       ids.push(currentElement);
     }
