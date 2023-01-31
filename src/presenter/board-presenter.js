@@ -7,28 +7,33 @@ import PopupView from '../view/popup-view.js';
 import ShowMoreButtonView from '../view/show-more-button-view.js';
 
 export default class BoardPresenter {
-  boardComponent = new BoardFilmsView();
-  filmListComponent = new ListFilmsView();
-  filmListContainer = new ListFilmsContainerView();
+  #boardContainer = null;
+  #filmsModel = null;
+
+  #boardComponent = new BoardFilmsView();
+  #filmListComponent = new ListFilmsView();
+  #filmListContainer = new ListFilmsContainerView();
+
+  #films = null;
 
   constructor({ boardContainer, filmsModel }) {
-    this.boardContainer = boardContainer;
-    this.filmsModel = filmsModel;
+    this.#boardContainer = boardContainer;
+    this.#filmsModel = filmsModel;
   }
 
   init() {
-    this.films = [...this.filmsModel.getFilms()];
+    this.#films = [...this.#filmsModel.films];
 
-    render(this.boardComponent, this.boardContainer);
-    render(this.filmListComponent, this.boardComponent.getElement());
-    render(this.filmListContainer, this.filmListComponent.getElement());
+    render(this.#boardComponent, this.#boardContainer);
+    render(this.#filmListComponent, this.#boardComponent.element);
+    render(this.#filmListContainer, this.#filmListComponent.element);
 
-    for (let i = 0; i < this.films.length; i++) {
-      render(new FilmCardView(this.films[i]), this.filmListContainer.getElement());
+    for (let i = 0; i < this.#films.length; i++) {
+      render(new FilmCardView(this.#films[i]), this.#filmListContainer.element);
     }
 
-    render(new ShowMoreButtonView(), this.filmListComponent.getElement());
+    render(new ShowMoreButtonView(), this.#filmListComponent.element);
 
-    render(new PopupView(this.films[0]), document.body);
+    render(new PopupView(this.#films[0]), document.body);
   }
 }
