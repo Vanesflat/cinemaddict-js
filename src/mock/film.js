@@ -73,17 +73,21 @@ const descriptions = [
 const imagesSrc = [
   'images/posters/made-for-each-other.png',
   'images/posters/popeye-meets-sinbad.png',
-  'images/posters/sagebrush-trail.png',
-  'images/posters/santa-claus-conquers-the-martians.png',
-  'images/posters/the-dance-of-life.png',
-  'images/posters/the-great-flamarion.png',
-  'images/posters/the-man-with-the-golden-arm.png'
+  'images/posters/sagebrush-trail.jpg',
+  'images/posters/santa-claus-conquers-the-martians.jpg',
+  'images/posters/the-dance-of-life.jpg',
+  'images/posters/the-great-flamarion.jpg',
+  'images/posters/the-man-with-the-golden-arm.jpg'
 ];
 
 const comments = createComments();
 
 const getRandomIdsArray = () => {
   const ids = [];
+  if (!comments.length) {
+    return ids;
+  }
+
   const lengthOfArray = getRandomInteger(1, comments.length);
   while (ids.length < lengthOfArray) {
     const currentElement = getRandomInteger(0, comments.length);
@@ -97,7 +101,7 @@ const getRandomIdsArray = () => {
 
 const createRelease = () => ({
   date: getRandomDate(),
-  releaseContry: getRandomArrayElement(countries)
+  releaseCountry: getRandomArrayElement(countries)
 });
 
 const createFilmInfo = () => ({
@@ -131,4 +135,4 @@ const createFilm = (count) => ({
 
 const createFilmsList = (count) => Array.from({ length: count }, (_, index) => createFilm(index));
 
-export { createFilmsList };
+export { createFilmsList, comments };

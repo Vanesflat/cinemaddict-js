@@ -17,7 +17,7 @@ const getRandomFractNumber = (min, max, decimalPlaces) => {
     return NaN;
   }
 
-  return (Math.random() * (max - min) + min).toFixed(decimalPlaces);
+  return +(Math.random() * (max - min) + min).toFixed(decimalPlaces);
 };
 
 export { getRandomArrayElement, getRandomInteger, getRandomElementsArray, getRandomFractNumber };

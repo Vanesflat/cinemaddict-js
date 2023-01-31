@@ -2,7 +2,7 @@ import { getRandomArrayElement, getRandomInteger } from '../utils/common.js';
 import { getRandomDate } from './date.js';
 
 const MIN_COMMENTS = 0;
-const MAX_COMMENTS = 20;
+const MAX_COMMENTS = 10;
 
 const authors = ['Tim Macoveev', 'John Doe', 'Ilya O\'Reilly', 'Ivan Solovev', 'Olya Margiani', 'Mirko Mitkir'];
 const commentText = [
@@ -24,4 +24,4 @@ const createComment = (count) => ({
 
 const createComments = () => Array.from({ length: getRandomInteger(MIN_COMMENTS, MAX_COMMENTS) }, (_, index) => createComment(index));
 
-export { createComments };
+export { createComments, emotions };
