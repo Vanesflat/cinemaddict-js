@@ -1,25 +1,11 @@
-import { createElement } from '../render.js';
+import AbstractView from '../framework/view/abstract-view';
 
 function createBoardFilmsTemplate() {
   return '<section class="films"></section>';
 }
 
-export default class BoardFilmsView {
-  #element = null;
-
+export default class BoardFilmsView extends AbstractView {
   get template() {
     return createBoardFilmsTemplate();
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

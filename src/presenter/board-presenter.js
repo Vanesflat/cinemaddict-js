@@ -1,4 +1,4 @@
-import { render } from '../render.js';
+import { render } from '../framework/render.js';
 import { isEscapeKey } from '../utils/film.js';
 import BoardFilmsView from '../view/board-films-view.js';
 import FilmCardView from '../view/film-card-view.js';
