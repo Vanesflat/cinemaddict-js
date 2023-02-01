@@ -2,6 +2,7 @@ import { render } from '../render.js';
 import { isEscapeKey } from '../utils/film.js';
 import BoardFilmsView from '../view/board-films-view.js';
 import FilmCardView from '../view/film-card-view.js';
+import ListEmptyView from '../view/list-empty-view.js';
 import ListFilmsContainerView from '../view/list-films-container-view.js';
 import ListFilmsView from '../view/list-films-view.js';
 import PopupView from '../view/popup-view.js';
@@ -33,6 +34,11 @@ export default class BoardPresenter {
     render(this.#boardComponent, this.#boardContainer);
     render(this.#filmListComponent, this.#boardComponent.element);
     render(this.#filmListContainer, this.#filmListComponent.element);
+
+    if (!this.#films.length) {
+      this.#renderListEmptyMessage();
+      return;
+    }
 
     for (let i = 0; i < Math.min(this.#films.length, FILMS_COUNT_PER_STEP); i++) {
       this.#renderFilm(this.#films[i]);
@@ -85,6 +91,10 @@ export default class BoardPresenter {
     });
 
     render(filmComponent, this.#filmListContainer.element);
+  }
+
+  #renderListEmptyMessage() {
+    render(new ListEmptyView(), this.#filmListContainer.element);
   }
 
   #loadMoreButtonHandler = (evt) => {
