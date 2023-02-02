@@ -20,4 +20,7 @@ const getRandomFractNumber = (min, max, decimalPlaces) => {
   return +(Math.random() * (max - min) + min).toFixed(decimalPlaces);
 };
 
-export { getRandomArrayElement, getRandomInteger, getRandomElementsArray, getRandomFractNumber };
+const updateItem = (items, update) => items.map((item) => item.id === update.id ? update : item);
+
+
+export { getRandomArrayElement, getRandomInteger, getRandomElementsArray, getRandomFractNumber, updateItem };
