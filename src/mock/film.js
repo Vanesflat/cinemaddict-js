@@ -1,6 +1,7 @@
 import { getRandomArrayElement, getRandomElementsArray, getRandomFractNumber, getRandomInteger } from '../utils/common.js';
 import { createComments } from './comment.js';
-import { getRandomDate } from './date';
+import { getRandomDate } from './date.js';
+import { nanoid } from 'nanoid';
 
 const MIN_FILM_RATING = 0;
 const MAX_FILM_RATING = 10;
@@ -126,13 +127,13 @@ const createUserDetails = () => ({
   favorite: Boolean(getRandomInteger(0, 1))
 });
 
-const createFilm = (count) => ({
-  id: count,
+const createFilm = () => ({
+  id: nanoid(),
   comments: getRandomIdsArray(),
   filmInfo: createFilmInfo(),
   userDetails: createUserDetails()
 });
 
-const createFilmsList = (count) => Array.from({ length: count }, (_, index) => createFilm(index));
+const createFilmsList = (count) => Array.from({ length: count }, createFilm);
 
 export { createFilmsList, comments };
